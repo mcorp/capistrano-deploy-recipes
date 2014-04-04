@@ -26,7 +26,7 @@ have recipes to install the dependencies as we want.
 
 ## Installation
 
-```
+```ruby
 group :development do
   gem 'capistrano'
   gem 'capistrano-deploy-recipes', github: 'mcorp/capistrano-deploy-recipes'
@@ -37,7 +37,7 @@ end
 
 Add on your `Capfile` file the recipes you want to use
 
-```
+```ruby
 require 'recipes/ruby'
 require 'recipes/nginx'
 require 'recipes/unicorn'
