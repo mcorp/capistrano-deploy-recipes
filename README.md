@@ -18,7 +18,7 @@ many situations, but (there is always a but)...
 But sometimes wouldn't it be lovely if a simple `cap production deploy`
 solve it all?
 
-Whatching [RailsCast episode 337][3], Ryan Bates showed a simple way
+Watching [RailsCast episode 337][3], Ryan Bates showed a simple way
 to achieve that.
 
 Googling around we found some gems that seems to do that, but they dont
