@@ -16,8 +16,12 @@ namespace :nginx do
 
   %w{start stop restart}.each do |command|
     desc "#{command.capitalize} nginx"
-    task status do
-      needs_implementation
+    task command do
+      on roles(:web) do
+        as :root do
+          execute :services, 'nginx', command
+        end
+      end
     end
   end
 
