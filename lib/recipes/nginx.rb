@@ -15,9 +15,9 @@ namespace :nginx do
 
   desc "Setup nginx configuration for this application"
   task :setup do
-    sites_available = "/etc/nginx/sites-available/#{fetch(:application)}"
-    sites_enabled   = "/etc/nginx/sites-enabled/#{fetch(:application)}"
     temp_file       = "#{fetch :tmp_dir}/#{fetch :application}"
+    sites_available = "/etc/nginx/sites-available/#{fetch :application}"
+    sites_enabled   = "/etc/nginx/sites-enabled/#{fetch :application}"
 
     on roles(:web) do
       as :root do
