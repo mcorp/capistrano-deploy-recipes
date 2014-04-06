@@ -3,4 +3,15 @@ namespace :recipes do
   task :list do
     raise 'Not implemented'
   end
+
+  desc "Install selected recipes on remote server"
+  task :install do
+    needs_implementation
+  end
+
+  desc "Setup selected recipes on remote server"
+  task :setup do
+    needs_implementation
+  end
+end
 end
