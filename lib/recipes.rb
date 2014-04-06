@@ -14,4 +14,7 @@ namespace :recipes do
     needs_implementation
   end
 end
+
+def needs_implementation
+  puts "Needs to be implemented +_+"
 end
