@@ -6,7 +6,7 @@ namespace :nginx do
   task :install do
     on roles(:web) do
       as :root do
-        aptitude 'install -y nginx'
+        aptitude %w{install -y nginx}
       end
     end
   end
@@ -23,7 +23,7 @@ namespace :nginx do
     task command do
       on roles(:web) do
         as :root do
-          execute :services, 'nginx', command
+          service 'nginx', command
         end
       end
     end
