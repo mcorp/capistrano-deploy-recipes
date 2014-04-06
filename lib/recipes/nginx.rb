@@ -4,7 +4,11 @@ namespace :nginx do
 
   desc "Install the latest stable release of nginx"
   task :install do
-    needs_implemetation
+    on roles(:web) do
+      as :root do
+        aptitude 'install -y nginx'
+      end
+    end
   end
   after "recipes:install", "nginx:install"
 
