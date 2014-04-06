@@ -1,3 +1,5 @@
+require 'sshkit_extensions'
+
 namespace :recipes do
   desc "List all known recipes"
   task :list do
