@@ -22,7 +22,7 @@ namespace :nginx do
     on roles(:web) do
       as :root do
         erb = File.read(File.expand_path("../../templates/nginx_unicorn.erb", __FILE__))
-        upload! StringIO.new(ERB.new(erb).result), temp_file
+        upload! StringIO.new(ERB.new(erb).result(binding)), temp_file
         execute :chown, 'root:', temp_file
         execute :mv, temp_file, sites_available
 
