@@ -1,5 +1,5 @@
-upstream unicorn_<%= fetch :application %>_server {
-  server unix:/tmp/unicorn.<%= fetch :application %>.sock fail_timeout=30;
+upstream unicorn_<%= application %>_server {
+  server unix:/tmp/unicorn.<%= application %>.sock fail_timeout=30;
 }
 
 server {
@@ -18,6 +18,6 @@ server {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header Host $http_host;
     proxy_redirect off;
-    proxy_pass http://unicorn_<%= fetch :application %>_server;
+    proxy_pass http://unicorn_<%= application %>_server;
   }
 }

@@ -20,3 +20,8 @@ end
 def needs_implementation
   puts "Needs to be implemented +_+"
 end
+
+# Keeps only a..zA..Z0..9_
+def application
+  @application ||= fetch(:application).gsub(/\W/,'')
+end
