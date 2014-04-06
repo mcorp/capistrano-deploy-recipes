@@ -7,6 +7,7 @@ namespace :nginx do
     on roles(:web) do
       as :root do
         aptitude %w{install -y nginx}
+        execute 'update-rc.d', %w{nginx defaults}
       end
     end
   end
