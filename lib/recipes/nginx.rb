@@ -24,6 +24,7 @@ namespace :nginx do
         erb = File.read(File.expand_path("../../templates/nginx_unicorn.erb", __FILE__))
         upload! StringIO.new(ERB.new(erb).result(binding)), temp_file
         execute :chown, 'root:', temp_file
+        execute :chmod, 'a+r', temp_file
         execute :mv, temp_file, sites_available
 
         # link creation from sites-available ~> sites-enabled
