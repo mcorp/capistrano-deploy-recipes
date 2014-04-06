@@ -4,7 +4,13 @@ namespace :postgres do
 
   desc "Install the latest stable release of postgres"
   task :install do
-    needs_implemetation
+    on roles(:db), only: { primary: true } do
+      as :root do
+        execute 'add-apt-repository', 'ppa:pitti/postgresql'
+        aptitude %w{ -y update }
+        aptitude %w{ -y install postgresql-9.3 postgresql-contrib-9.3 postgresql-client-9.3 libpq-dev postgresql-server-dev-9.3 }
+      end
+    end
   end
   after "recipes:install", "postgres:install"
 
