@@ -13,7 +13,7 @@ namespace :recipes do
 
   desc "Setup selected recipes on remote server"
   task :setup do
-    needs_implementation
+    # no actual action happens here
   end
 end
 
