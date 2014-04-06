@@ -20,10 +20,14 @@ namespace :postgres do
   end
   after "recipes:setup", "postgres:setup"
 
-  %w{start stop restart}.each do |command|
+  %w{start stop restart status}.each do |command|
     desc "#{command.capitalize} postgres"
-    task status do
-      needs_implementation
+    task command do
+      on roles(:db) do
+        as :root do
+          service 'postgresql', command
+        end
+      end
     end
   end
 
