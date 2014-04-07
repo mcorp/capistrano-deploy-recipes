@@ -46,6 +46,25 @@ require 'recipes/postgres'
 
 > Those requires must go inside `Capfile` and not on `deploy.rb`
 
+Then on the shell just call
+
+```bash
+cap production recipes:install recipes:setup
+```
+
+It will install all the selected packages and then run extra configurations when needed on the setup phase.
+
+You can also see and invoke just the tasks you want using `cap -T`.
+
+Some tasks have also other features like `nginx` which have this options:
+
+```
+cap nginx:install                  # Install the latest stable release of nginx
+cap nginx:restart                  # Restart nginx
+cap nginx:setup                    # Setup nginx configuration for this application
+cap nginx:start                    # Start nginx
+cap nginx:stop                     # Stop nginx
+```
 
 ## Contributing
 
