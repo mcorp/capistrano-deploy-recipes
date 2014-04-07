@@ -66,6 +66,16 @@ cap nginx:start                    # Start nginx
 cap nginx:stop                     # Stop nginx
 ```
 
+## Known issues
+
+* no automated tests
+* know to work on Ubuntu 12.04 LTS
+* lots of outputs when running
+* lack of (good) documentation
+* don't allow user to select versions
+* don't allow user to use its own templates
+* don't generate templates to be modified
+
 ## Contributing
 
 1. Fork it
