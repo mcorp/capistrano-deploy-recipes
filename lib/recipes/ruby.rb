@@ -38,7 +38,7 @@ namespace :ruby do
           end
 
           # updating rubygems
-          execute :gem, %w{ update --system }
+          execute "gem update --system" # Using string to run literal command (without prefixing)
 
           # removing temporary files
           execute :rm, '-rf', ruby_version, "#{ruby_version}.tar.gz"
