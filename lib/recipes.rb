@@ -1,11 +1,6 @@
 require 'sshkit_extensions'
 
 namespace :recipes do
-  desc "List all known recipes"
-  task :list do
-    raise 'Not implemented'
-  end
-
   desc "Install selected recipes on remote server"
   task :install do
     on roles(:all) do
