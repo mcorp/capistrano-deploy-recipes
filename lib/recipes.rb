@@ -7,6 +7,7 @@ namespace :recipes do
       as :root do
         aptitude :update
         aptitude %w{
+          install -y
           software-properties-common python-software-properties curl wget git
         }
       end
