@@ -11,7 +11,7 @@ and we would be so happy if all the dependencies (ruby, unicorn, nginx,
 postgres and so on) get installed by Capistrano.
 
 To make the stack deploy easier we can use a base image for the machines
-(which, by the way, we do have) or use tools like [Puppet][0] and [Cheff][1]
+(which, by the way, we do have) or use tools like [Puppet][0] and [Chef][1]
 or services like [configr][2]. Those options are great and will fit for
 many situations, but (there is always a but)...
 
