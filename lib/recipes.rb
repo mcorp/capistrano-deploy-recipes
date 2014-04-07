@@ -8,7 +8,14 @@ namespace :recipes do
 
   desc "Install selected recipes on remote server"
   task :install do
-    needs_implementation
+    on roles(:all) do
+      as :root do
+        aptitude :update
+        aptitude %w{
+          software-properties-common python-software-properties curl wget git
+        }
+      end
+    end
   end
 
   desc "Setup selected recipes on remote server"
