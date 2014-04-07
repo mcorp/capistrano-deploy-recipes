@@ -1,7 +1,13 @@
 require 'recipes'
 
-namespace :unicorn do
+set :unicorn_name,             nil
+set :unicorn_worker_processes, 2
 
+def unicorn_name
+  fetch(:unicorn_name) || [:unicorn, application].join('_')
+end
+
+namespace :unicorn do
   desc "Install the latest stable release of unicorn"
   task :install do
     needs_implemetation
