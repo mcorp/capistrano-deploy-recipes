@@ -22,7 +22,7 @@ namespace :unicorn do
 
   %w{start stop restart}.each do |command|
     desc "#{command.capitalize} unicorn"
-    task status do
+    task command do
       needs_implementation
     end
   end
