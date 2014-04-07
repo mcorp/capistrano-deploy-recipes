@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    capistrano-deploy-recipes (0.1.0)
+    capistrano-deploy-recipes (0.1.5)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
 
