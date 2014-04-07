@@ -1,4 +1,4 @@
-> NOTICE: we are on the early stages. Nothing is working properly yet ;)
+> NOTICE: we are on the early stages. ;)
 
 # Capistrano Deploy Recipes
 
@@ -39,18 +39,13 @@ Add on your `Capfile` file the recipes you want to use
 
 ```ruby
 require 'recipes/ruby'
+require 'recipes/nodejs'
 require 'recipes/nginx'
-require 'recipes/unicorn'
 require 'recipes/postgres'
 ```
 
 > Those requires must go inside `Capfile` and not on `deploy.rb`
 
-To discover a list of all the avaiable recipes just type:
-
-```
-bundle exec cap recipes:list
-```
 
 ## Contributing
 
