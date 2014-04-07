@@ -10,7 +10,7 @@ end
 namespace :unicorn do
   desc "Install the latest stable release of unicorn"
   task :install do
-    needs_implemetation
+    needs_implementation
   end
   after "recipes:install", "unicorn:install"
 
