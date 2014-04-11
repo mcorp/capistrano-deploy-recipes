@@ -5,10 +5,10 @@ rails_env   = ENV['RAILS_ENV'] || Dir.pwd.scan(/\/(production|homologation)\//).
 worker_processes <%= fetch :unicorn_worker_processes %>
 working_directory '<%= current_path %>'
 listen '<%= "/tmp/unicorn.<%= application %>.sock" %>', :backlog => 64
-timeout 30
 
 FileUtils.mkdir_p '<%= shared_path %>/pids'
 FileUtils.mkdir_p '<%= shared_path %>/log'
+timeout <%= unicorn_timeout %>
 
 pid '<%= shared_path %>/pids/unicorn.pid'
 stderr_path '<%= shared_path %>/log/unicorn.stderr.log'
