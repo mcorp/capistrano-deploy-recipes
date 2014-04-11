@@ -29,16 +29,21 @@ def application
   @application ||= fetch(:application).gsub(/\W/,'')
 end
 
-def template!(from, to)
+def template!(from, to, options = {})
   template_file = expand_template_filename from
   template      = File.read template_file
   temp_file     = File.join(fetch(:tmp_dir), File.basename(to))
 
   upload! StringIO.new(ERB.new(template).result(binding)), temp_file
 
-  execute :chown, 'root:',   temp_file
-  execute :chmod, 'a+r',     temp_file
+  # FIXME this is kind of dangerous
+  # https://github.com/capistrano/sshkit/blob/master/lib/sshkit/backends/abstract.rb#L95
+  ownership = "#{options[:user] || @user}:#{options[:group] || @group}"
+  mode      = options[:mode] || 'a+r'
+
   execute :mv,    temp_file, to
+  execute :chown, ownership, to
+  execute :chmod, mode,      to
 
   info "Generated file at #{to} using template #{template_file}"
 end
