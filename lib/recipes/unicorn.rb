@@ -29,6 +29,26 @@ namespace :unicorn do
         template! 'unicorn_init.conf', "/etc/init/#{unicorn_name}.conf"
       end
     end
+
+    sites_available = "/etc/nginx/sites-available/#{fetch :application}"
+    sites_enabled   = "/etc/nginx/sites-enabled/#{fetch :application}"
+
+    on roles(:web) do
+      as :root do
+        template! 'unicorn_nginx', sites_available
+
+        # link creation from sites-available ~> sites-enabled
+        if test("[ -f #{sites_enabled} ]")
+          execute :rm, sites_enabled
+        end
+
+        execute :ln, '--symbolic', sites_available, sites_enabled
+
+        info "Generated nginx site configuration at #{sites_available}"
+        info "Generated nginx site configuration at #{sites_enabled}"
+      end
+    end
+
   end
   after "recipes:setup", "unicorn:setup"
 
