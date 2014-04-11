@@ -15,25 +15,22 @@ namespace :nginx do
 
   desc "Setup nginx configuration for this application"
   task :setup do
-    temp_file       = "#{fetch :tmp_dir}/#{fetch :application}"
     sites_available = "/etc/nginx/sites-available/#{fetch :application}"
     sites_enabled   = "/etc/nginx/sites-enabled/#{fetch :application}"
 
     on roles(:web) do
       as :root do
-        erb = File.read(File.expand_path("../../templates/nginx_unicorn.erb", __FILE__))
-        upload! StringIO.new(ERB.new(erb).result(binding)), temp_file
-        execute :chown, 'root:', temp_file
-        execute :chmod, 'a+r', temp_file
-        execute :mv, temp_file, sites_available
+        template! 'nginx_unicorn', sites_available
 
         # link creation from sites-available ~> sites-enabled
         if test("[ -f #{sites_enabled} ]")
           execute :rm, sites_enabled
         end
+
         execute :ln, '--symbolic', sites_available, sites_enabled
 
-        info "Generated nginx site configuration at /etc/nginx/sites-available/#{fetch(:application)}"
+        info "Generated nginx site configuration at #{sites_available}"
+        info "Generated nginx site configuration at #{sites_enabled}"
       end
     end
   end
