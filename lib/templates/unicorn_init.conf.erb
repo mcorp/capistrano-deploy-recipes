@@ -1,0 +1,18 @@
+description "<%= application %>"
+
+start on runlevel [2345]
+stop on runlevel [016]
+
+env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+env RAILS_ENV=production
+
+console owner
+
+pre-start script
+  chdir <%= current_path %>
+  exec bundle exec unicorn_rails -D -c <%= current_path %>/config/unicorn.rb --env production
+end script
+
+post-stop script
+  exec kill `cat <%= shared_path %>/pids/unicorn.pid`
+end script
