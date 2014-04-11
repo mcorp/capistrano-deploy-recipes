@@ -1,12 +1,7 @@
-require 'fileutils'
-
-rails_env   = ENV['RAILS_ENV'] || Dir.pwd.scan(/\/(production|homologation)\//).flatten.first || 'production'
+rails_env  = ENV['RAILS_ENV'] || Dir.pwd.scan(/\/(production|homologation)\//).flatten.first || 'production'
 
 worker_processes <%= fetch :unicorn_worker_processes %>
 working_directory '<%= current_path %>'
-
-FileUtils.mkdir_p '<%= shared_path %>/pids'
-FileUtils.mkdir_p '<%= shared_path %>/log'
 listen '<%= "/tmp/#{unicorn_name}.sock" %>', :backlog => 64
 timeout <%= unicorn_timeout %>
 
