@@ -23,8 +23,6 @@ namespace :unicorn do
   task :setup do
     on roles(:app) do
       as :root do
-        # FIXME shouldn't it be locally generated? or on shared/config?
-        template! 'unicorn.rb', "#{current_path}/config/unicorn.rb"
         template! 'unicorn_init', "/etc/init.d/#{unicorn_name}"
         template! 'unicorn_init.conf', "/etc/init/#{unicorn_name}.conf"
       end
@@ -51,6 +49,17 @@ namespace :unicorn do
 
   end
   after "recipes:setup", "unicorn:setup"
+
+  desc "Setup unicorn rails specific configuration for this application"
+  task :setup_rails do
+    on roles(:app) do
+      as :root do
+        # FIXME shouldn't it be locally generated? or on shared/config?
+        template! 'unicorn.rb', "#{current_path}/config/unicorn.rb"
+      end
+    end
+  end
+  after "deploy:updated", "unicorn:setup_rails"
 
   %w{start stop restart}.each do |command|
     desc "#{command.capitalize} unicorn"
