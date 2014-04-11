@@ -28,3 +28,18 @@ end
 def application
   @application ||= fetch(:application).gsub(/\W/,'')
 end
+
+def template!(from, to)
+  template_file = File.expand_path("../templates/#{from}", __FILE__)
+  template_file << '.erb' if File.extname(template_file).empty?
+  template      = File.read template_file
+  temp_file     = File.join(fetch(:tmp_dir), File.basename(to))
+
+  upload! StringIO.new(ERB.new(template).result(binding)), temp_file
+
+  execute :chown, 'root:',   temp_file
+  execute :chmod, 'a+r',     temp_file
+  execute :mv,    temp_file, to
+
+  info "Generated file at #{to} using template #{template_file}"
+end
