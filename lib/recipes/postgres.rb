@@ -6,7 +6,8 @@ namespace :postgres do
   task :install do
     on roles(:db), only: { primary: true } do
       as :root do
-        execute 'add-apt-repository', 'ppa:pitti/postgresql'
+        execute 'echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+        execute 'wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -'
         aptitude %w{ -y update }
         aptitude %w{ -y install postgresql-9.3 postgresql-contrib-9.3 postgresql-client-9.3 libpq-dev postgresql-server-dev-9.3 }
       end
