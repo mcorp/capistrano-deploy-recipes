@@ -50,6 +50,6 @@ end
 
 def expand_template_filename(template)
   template = File.expand_path "../templates/#{template}", __FILE__
-  template << '.erb' if File.extname(template).empty?
+  template << '.erb' unless File.extname(template).downcase == '.erb'
   template
 end
