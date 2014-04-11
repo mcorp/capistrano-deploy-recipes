@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |gem|
   gem.name          = "capistrano-deploy-recipes"
-  gem.version       = '0.1.5'
+  gem.version       = '0.1.6.rc'
   gem.authors       = ["Adilson Carvalho"]
   gem.email         = ["lc.adilson@gmail.com"]
   gem.description   = %q{Capistrano fullstack deploy recipes}
