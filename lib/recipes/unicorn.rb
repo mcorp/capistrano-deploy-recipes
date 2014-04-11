@@ -1,11 +1,11 @@
 require 'recipes'
 
-set :unicorn_name,             nil
-set :unicorn_worker_processes, 2
+set :unicorn_name, nil
 set :unicorn_timeout, 30
+set :unicorn_worker_processes, 2
 
 def unicorn_name
-  fetch(:unicorn_name) || [:unicorn, application].join('_')
+  fetch(:unicorn_name) || [:unicorn, fetch(:application)].join('_')
 end
 
 def unicorn_timeout
@@ -23,7 +23,9 @@ namespace :unicorn do
   task :setup do
     on roles(:app) do
       as :root do
-        template! 'unicorn_init', "/etc/init.d/#{unicorn_name}"
+        unicorn_init = "/etc/init.d/#{unicorn_name}"
+        template! 'unicorn_init', unicorn_init
+        execute :chmod, '+x', unicorn_init
         template! 'unicorn_init.conf', "/etc/init/#{unicorn_name}.conf"
       end
     end

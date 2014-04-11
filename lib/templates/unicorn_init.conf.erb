@@ -1,4 +1,4 @@
-description "<%= application %>"
+description "<%= fetch(:application) %>"
 
 start on runlevel [2345]
 stop on runlevel [016]
@@ -9,10 +9,10 @@ env RAILS_ENV=production
 console owner
 
 pre-start script
-  chdir <%= current_path %>
-  exec bundle exec unicorn_rails -D -c <%= current_path %>/config/unicorn.rb --env production
+  chdir <%= fetch(:current_path) %>
+  exec bundle exec unicorn_rails -D -c <%= fetch(:current_path) %>/config/unicorn.rb --env production
 end script
 
 post-stop script
-  exec kill `cat <%= shared_path %>/pids/unicorn.pid`
+  exec kill `cat <%= fetch(:shared_path) %>/pids/unicorn.pid`
 end script
