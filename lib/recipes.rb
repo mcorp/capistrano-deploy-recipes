@@ -30,8 +30,7 @@ def application
 end
 
 def template!(from, to)
-  template_file = File.expand_path("../templates/#{from}", __FILE__)
-  template_file << '.erb' if File.extname(template_file).empty?
+  template_file = expand_template_filename from
   template      = File.read template_file
   temp_file     = File.join(fetch(:tmp_dir), File.basename(to))
 
@@ -42,4 +41,10 @@ def template!(from, to)
   execute :mv,    temp_file, to
 
   info "Generated file at #{to} using template #{template_file}"
+end
+
+def expand_template_filename(template)
+  template = File.expand_path "../templates/#{template}", __FILE__
+  template << '.erb' if File.extname(template).empty?
+  template
 end
