@@ -39,6 +39,7 @@ namespace :ruby do
 
           # updating rubygems
           execute "gem update --system" # Using string to run literal command (without prefixing)
+          execute "gem install bundler"
 
           # removing temporary files
           execute :rm, '-rf', ruby_version, "#{ruby_version}.tar.gz"
