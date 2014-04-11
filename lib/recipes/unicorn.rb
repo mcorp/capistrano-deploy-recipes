@@ -2,9 +2,14 @@ require 'recipes'
 
 set :unicorn_name,             nil
 set :unicorn_worker_processes, 2
+set :unicorn_timeout, 30
 
 def unicorn_name
   fetch(:unicorn_name) || [:unicorn, application].join('_')
+end
+
+def unicorn_timeout
+  fetch(:unicorn_timeout) || 60
 end
 
 namespace :unicorn do
