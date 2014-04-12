@@ -1,11 +1,9 @@
-# reference: http://va.mu/hPOY
-if ENV['TRAVIS']
-  require 'codeclimate-test-reporter'
-  CodeClimate::TestReporter.start
+# runs only on CI
+require 'codeclimate-test-reporter'
+CodeClimate::TestReporter.start
 
-  require 'simplecov'
-  SimpleCov.start
-end
+require 'simplecov'
+SimpleCov.start
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
