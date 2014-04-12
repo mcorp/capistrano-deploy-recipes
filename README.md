@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/mcorp/capistrano-deploy-recipes.svg)](https://travis-ci.org/mcorp/capistrano-deploy-recipes)
 [![Code Climate](https://codeclimate.com/github/mcorp/capistrano-deploy-recipes.png)](https://codeclimate.com/github/mcorp/capistrano-deploy-recipes)
 
 > NOTICE: we are on the early stages. ;)

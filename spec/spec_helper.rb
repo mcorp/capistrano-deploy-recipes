@@ -1,8 +1,11 @@
-require 'codeclimate-test-reporter'
-CodeClimate::TestReporter.start
+# reference: http://va.mu/hPOY
+if ENV['TRAVIS']
+  require 'codeclimate-test-reporter'
+  CodeClimate::TestReporter.start
 
-require 'simplecov'
-SimpleCov.start
+  require 'simplecov'
+  SimpleCov.start
+end
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
