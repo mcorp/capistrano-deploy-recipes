@@ -21,4 +21,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'rspec', '~> 2.14'
   gem.add_development_dependency 'guard-rspec', '~> 4.2'
   gem.add_development_dependency 'fuubar'
+  gem.add_development_dependency 'simplecov'
+  gem.add_development_dependency 'codeclimate-test-reporter'
 end
