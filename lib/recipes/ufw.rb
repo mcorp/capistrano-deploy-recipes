@@ -16,23 +16,27 @@ namespace :ufw do
 
   desc "Setup the basic ufw rules"
   task :setup do
-    as :root do
-      on roles(:all) do
+    on roles(:all) do
+      as :root do
         execute :ufw, %w{ default deny  incoming }
         execute :ufw, %w{ default allow outgoing }
         execute :ufw, %w{ allow ssh              }
       end
+    end
 
-      on roles(:web) do
+    on roles(:web) do
+      as :root do
         execute :ufw, %w{ allow http  }
         execute :ufw, %w{ allow https }
       end
+    end
 
-      on roles(:db) do
+    on roles(:db) do
+      as :root do
         # postgres default port
         execute :ufw, %W{ allow from #{fetch :ufw_vpn_cidr} to any port 5432 }
-      end if fetch(:ufw_vpn_cidr)
-    end
+      end
+    end if fetch(:ufw_vpn_cidr)
   end
   after "recipes:setup", "ufw:setup"
 
