@@ -18,4 +18,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'capistrano', '~> 3.1'
   gem.add_dependency 'capistrano-bundler', '~> 1.1'
 
+  gem.add_development_dependency 'rspec', '~> 2.14'
+  gem.add_development_dependency 'guard-rspec', '~> 4.2'
+  gem.add_development_dependency 'fuubar'
 end
