@@ -56,12 +56,11 @@ namespace :unicorn do
   task :setup_rails do
     on roles(:app) do
       as :root do
-        # FIXME shouldn't it be locally generated? or on shared/config?
-        template! 'unicorn.rb', "#{current_path}/config/unicorn.rb"
+        template! 'unicorn.rb', "#{shared_path}/config/unicorn.rb"
       end
     end
   end
-  after "deploy:updated", "unicorn:setup_rails"
+  after "deploy:check:make_linked_dirs", "unicorn:setup_rails"
 
   %w{start stop restart}.each do |command|
     desc "#{command.capitalize} unicorn"

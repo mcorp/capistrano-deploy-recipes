@@ -5,7 +5,7 @@ working_directory '<%= fetch(:current_path) %>'
 listen '<%= "/tmp/#{unicorn_name}.sock" %>', :backlog => 64
 timeout <%= unicorn_timeout %>
 
-pid '<%= shared_path %>/pids/unicorn.pid'
+pid '<%= shared_path %>/tmp/pids/unicorn.pid'
 stderr_path '<%= shared_path %>/log/unicorn.stderr.log'
 stdout_path '<%= shared_path %>/log/unicorn.stdout.log'
 

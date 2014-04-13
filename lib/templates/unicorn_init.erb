@@ -5,10 +5,10 @@ set -e
 
 # Feel free to change any of the following variables for your app:
 TIMEOUT=<%= unicorn_timeout %>
-APP_ROOT=<%= fetch(:current_path) %>
-PID=<%= fetch(:shared_path) %>/pids/unicorn.pid
-CMD="RAILS_ENV=production bundle exec unicorn_rails -D -c <%= fetch(:current_path) %>/config/unicorn.rb"
-INIT_CONF=<%= fetch(:current_path) %>/config/init.conf
+APP_ROOT=<%= current_path %>
+PID=<%= shared_path %>/tmp/pids/unicorn.pid
+CMD="RAILS_ENV=production bundle exec unicorn_rails -D -c <%= current_path %>/config/unicorn.rb"
+INIT_CONF=<%= current_path %>/config/init.conf
 action="$1"
 set -u
 
