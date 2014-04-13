@@ -21,6 +21,19 @@ namespace :postgres do
   end
   after "recipes:setup", "postgres:setup"
 
+  desc "Setup database configuration file for rails application"
+  task :setup_rails do
+    on roles(:app) do
+      as :root do
+        file = "#{shared_path}/config/database.yml"
+        unless test "[ -f #{file} ]"
+          template! 'database.postgres.yml', file
+        end
+      end
+    end
+  end
+  after "deploy:check:make_linked_dirs", "postgres:setup_rails"
+
   %w{start stop restart status}.each do |command|
     desc "#{command.capitalize} postgres"
     task command do
