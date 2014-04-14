@@ -9,10 +9,10 @@ env RAILS_ENV=production
 console owner
 
 pre-start script
-  chdir <%= fetch(:current_path) %>
-  exec bundle exec unicorn_rails -D -c <%= fetch(:current_path) %>/config/unicorn.rb --env production
+  chdir <%= current_path %>
+  exec bundle exec unicorn_rails -D -c <%= current_path %>/config/unicorn.rb --env production
 end script
 
 post-stop script
-  exec kill `cat <%= fetch(:shared_path) %>/pids/unicorn.pid`
+  exec kill `cat <%= shared_path %>/tmp/pids/unicorn.pid`
 end script
